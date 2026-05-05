@@ -1,0 +1,17 @@
+{
+  "source": "National Renewable Energy Laboratory, OpenEI Utility Rate Database",
+  "source_url": "https://openei.org/datasets/dataset/u-s-electric-utility-companies-and-rates-look-up-by-zipcode-2024",
+  "description": "U.S. electric utility rates by zip code, with state and national averages for comparison",
+  "data_year": 2024,
+  "utility_count": 1192,
+  "zip_count": 38564,
+  "update_frequency": "Annual",
+  "disclaimer": "Rates shown are residential averages from NREL's 2024 dataset. Actual rates may vary by plan, usage tier, and seasonal adjustments. This tool is informational and is not a bill estimate.",
+  "data_freshness": {
+    "vintage": "2024",
+    "release_date": "2026-05-02",
+    "source_update_frequency": "annual",
+    "staleness_threshold_months": 18,
+    "staleness_action": "refresh_or_warn"
+  }
+}

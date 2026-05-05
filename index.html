@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Rate Check</title>
+    <meta name="description" content="Enter your zip code. See how your electric utility's rate compares to nearby utilities, your state average, and the national average. Data from NREL and EIA covering ~1,200 US electric utilities.">
+    <meta property="og:title" content="Utility Rate Check">
+    <meta property="og:description" content="Enter your zip code. See how your electric rate compares to other utilities in your state and nationwide.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Utility Rate Check</h1>
+    <p class="subtitle">How does your electric rate compare?</p>
+</header>
+
+<main>
+    <div class="search-section">
+        <div class="search-box">
+            <input type="text" id="zip-input" placeholder="Enter your zip code" maxlength="5" inputmode="numeric" pattern="[0-9]*" autocomplete="postal-code">
+            <button id="search-btn" type="button">Check</button>
+        </div>
+        <p class="search-hint" id="search-hint"></p>
+    </div>
+
+    <div id="picker-section" class="picker-section hidden">
+        <p class="picker-label">Multiple utilities serve this area. Which is yours?</p>
+        <div id="picker-list" class="picker-list"></div>
+    </div>
+
+    <div id="results-section" class="results-section hidden">
+        <div class="result-header">
+            <h2 id="utility-name"></h2>
+            <span class="ownership-badge" id="ownership-badge"></span>
+        </div>
+
+        <div class="rate-comparison">
+            <div class="rate-card primary">
+                <div class="rate-label">Your Utility</div>
+                <div class="rate-value" id="your-rate"></div>
+                <div class="rate-sub" id="your-rate-monthly"></div>
+            </div>
+            <div class="rate-card">
+                <div class="rate-label" id="state-label">State Average</div>
+                <div class="rate-value" id="state-rate"></div>
+                <div class="rate-sub" id="state-rate-monthly"></div>
+            </div>
+            <div class="rate-card">
+                <div class="rate-label">National Average</div>
+                <div class="rate-value" id="national-rate"></div>
+                <div class="rate-sub" id="national-rate-monthly"></div>
+            </div>
+        </div>
+
+        <div class="rate-bar-section">
+            <div class="rate-bar-wrapper">
+                <div class="rate-bar-track">
+                    <div class="rate-bar-fill" id="rate-bar-fill"></div>
+                    <div class="rate-bar-marker national-marker" id="national-marker">
+                        <span class="marker-label">US</span>
+                    </div>
+                    <div class="rate-bar-marker state-marker" id="state-marker">
+                        <span class="marker-label" id="state-marker-label">ST</span>
+                    </div>
+                    <div class="rate-bar-marker your-marker" id="your-marker">
+                        <span class="marker-label">You</span>
+                    </div>
+                </div>
+                <div class="rate-bar-labels">
+                    <span id="bar-min"></span>
+                    <span id="bar-max"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="context-card" id="context-card">
+            <p id="context-text"></p>
+        </div>
+
+        <div class="nearby-section" id="nearby-section">
+            <h3>Other utilities in <span id="nearby-state"></span></h3>
+            <div class="nearby-table-wrapper">
+                <table class="nearby-table" id="nearby-table">
+                    <thead>
+                        <tr>
+                            <th>Utility</th>
+                            <th>Type</th>
+                            <th>Rate</th>
+                            <th>vs. Yours</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nearby-body"></tbody>
+                </table>
+            </div>
+            <p class="nearby-hint" id="nearby-hint"></p>
+        </div>
+
+        <div class="zip-others" id="zip-others-section">
+            <h3>Also serving zip code <span id="zip-others-zip"></span></h3>
+            <div id="zip-others-list" class="zip-others-list"></div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading hidden">Loading data...</div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p class="footer-about">
+            Residential electric rates from <a href="https://data.openei.org/submissions/8563" target="_blank" rel="noopener">NREL/OpenEI</a> (2024 data).
+            Covers ~1,200 US electric utilities across ~38,500 zip codes.
+            Rates shown are average residential rates (revenue per kWh sold), not tier-specific.
+            Monthly estimates assume 900 kWh/month (US average household consumption).
+        </p>
+        <p class="footer-links">
+            <a href="https://github.com/GreatTombProductions" target="_blank" rel="noopener">More tools</a>
+        </p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
